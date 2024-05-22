@@ -1,12 +1,9 @@
-package muling;
+package org.dreambot.utilities.muling;
 
 import org.dreambot.api.utilities.Logger;
 
 import java.io.*;
 import java.net.*;
-import org.dreambot.api.methods.Calculations;
-import org.dreambot.api.methods.container.impl.Inventory;
-import org.dreambot.api.utilities.Logger;
 
 public class MuleClient {
     private static MuleClient instance;

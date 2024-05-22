@@ -1,7 +1,7 @@
 package org.dreambot;
 
-import muling.MuleClient;
-import muling.MuleServer;
+import org.dreambot.utilities.muling.MuleClient;
+import org.dreambot.utilities.muling.MuleServer;
 import org.dreambot.api.script.AbstractScript;
 import org.dreambot.api.script.Category;
 import org.dreambot.api.script.ScriptManifest;

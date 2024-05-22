@@ -1,11 +1,10 @@
-package muling;
+package org.dreambot.utilities.muling;
 
 import org.dreambot.api.utilities.Logger;
 
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
-import org.dreambot.api.utilities.Logger;
 
 public class MuleServer {
     private static MuleServer instance;
