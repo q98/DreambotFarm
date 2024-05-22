@@ -70,6 +70,16 @@ public class Main extends AbstractScript implements PaintInfo {
             
         }
     }
+    
+    @Override
+    public void onStop() {
+        MuleServer.getInstance().stop();
+        try {
+            MuleClient.getInstance().stopConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Add all of the branches and leaves to the tree
     private void instantiateTree() {
