@@ -20,7 +20,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-@ScriptManifest(author = "Bonfire", name = "DreamBot TBL", version = 1.00, category = Category.MAGIC)
+@ScriptManifest(author = "q98", name = "Automated bot farm with muling.", version = 0.01, category = Category.MONEYMAKING)
 public class Main extends AbstractScript implements PaintInfo {
 
     // Instantiate the tree to hold our branches and leaves
@@ -107,7 +107,7 @@ public class Main extends AbstractScript implements PaintInfo {
 
     private void showGUI() {
         JFrame frame = new JFrame();
-        frame.setTitle("Best fighter");
+        frame.setTitle("Automated Gold Farm");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setPreferredSize(new Dimension(300, 200));
@@ -116,7 +116,7 @@ public class Main extends AbstractScript implements PaintInfo {
         JPanel settingPanel = new JPanel();
         settingPanel.setLayout(new GridLayout(0, 2));
 
-        JLabel foodNameLabel = new JLabel("Food name:");
+        /*JLabel foodNameLabel = new JLabel("Food name:");
         settingPanel.add(foodNameLabel);
 
         JTextField foodNameTextField = new JTextField();
@@ -138,7 +138,7 @@ public class Main extends AbstractScript implements PaintInfo {
         settingPanel.add(label);
 
         JComboBox<Integer> anotherComboBox = new JComboBox<>(new Integer[]{0, 6, 18});
-        settingPanel.add(anotherComboBox);
+        settingPanel.add(anotherComboBox);*/
 
         JCheckBox muleCheckBox = new JCheckBox("Is Mule");
         muleCheckBox.addActionListener(e -> isMule = muleCheckBox.isSelected());
@@ -152,11 +152,11 @@ public class Main extends AbstractScript implements PaintInfo {
         JButton button = new JButton("Start script");
         button.addActionListener(e -> {
             Settings settings = Global.getInstance().getSettings();
-            settings.setFoodName(foodNameTextField.getText());
-            settings.setLootBones(lootCheckBox.isSelected());
-            settings.setUsePrayer(prayerCheckBox.isSelected());
-            settings.setEnemyName((String) enemyComboBox.getSelectedItem());
-            settings.setSomeValue((int) anotherComboBox.getSelectedItem());
+            //settings.setFoodName(foodNameTextField.getText());
+            //settings.setLootBones(lootCheckBox.isSelected());
+            //settings.setUsePrayer(prayerCheckBox.isSelected());
+            //settings.setEnemyName((String) enemyComboBox.getSelectedItem());
+            //settings.setSomeValue((int) anotherComboBox.getSelectedItem());
             settings.setRunning(true);
             settings.setMule(isMule);
             frame.dispose();

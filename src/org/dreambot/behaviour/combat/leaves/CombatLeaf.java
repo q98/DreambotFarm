@@ -23,7 +23,7 @@ public class CombatLeaf extends Leaf {
 
     @Override
     public int onLoop() {
-        Logger.log(Color.GREEN, settings.isMule());
+        //Logger.log(Color.GREEN, settings.isMule());
 
         return Timing.loopReturn();
     }
