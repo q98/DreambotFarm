@@ -15,6 +15,8 @@ import org.dreambot.behaviour.timeout.TimeoutLeaf;
 import org.dreambot.framework.Tree;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
+import org.dreambot.utilities.globals.Global;
+import org.dreambot.utilities.globals.Settings;
 
 import javax.swing.*;
 import java.awt.*;

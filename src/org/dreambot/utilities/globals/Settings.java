@@ -1,4 +1,4 @@
-package org.dreambot.utilities;
+package org.dreambot.utilities.globals;
 
 public class Settings {
     private boolean isRunning;

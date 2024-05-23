@@ -3,6 +3,8 @@ package org.dreambot.utilities;
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.utilities.muling.MuleClient;
 import org.dreambot.utilities.muling.MuleServer;
+import org.dreambot.utilities.globals.Global;
+import org.dreambot.utilities.globals.Settings;
 
 import javax.swing.*;
 import java.awt.*;

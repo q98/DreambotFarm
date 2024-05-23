@@ -1,7 +1,7 @@
 package org.dreambot.behaviour.combat.leaves;
 
-import org.dreambot.utilities.Global;
-import org.dreambot.utilities.Settings;
+import org.dreambot.utilities.globals.Global;
+import org.dreambot.utilities.globals.Settings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Timing;
 
