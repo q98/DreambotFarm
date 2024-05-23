@@ -8,6 +8,7 @@ public class Settings {
     private int someValue;
     private boolean isRunning;
     private boolean isMule;
+    private boolean shouldMule;  // New field
 
     // Getters and setters for all fields
 
@@ -65,5 +66,13 @@ public class Settings {
 
     public void setMule(boolean mule) {
         isMule = mule;
+    }
+
+    public boolean ShouldMule() {
+        return shouldMule;
+    }
+
+    public void setShouldMule(boolean shouldMule) {
+        this.shouldMule = shouldMule;
     }
 }

@@ -1,5 +1,6 @@
 package org.dreambot;
 
+import org.dreambot.api.Client;
 import org.dreambot.utilities.muling.MuleClient;
 import org.dreambot.utilities.muling.MuleServer;
 import org.dreambot.api.script.AbstractScript;
@@ -18,6 +19,8 @@ import org.dreambot.utilities.Timing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 @ScriptManifest(author = "q98", name = "Automated bot farm with muling.", version = 0.01, category = Category.MONEYMAKING)
@@ -30,6 +33,8 @@ public class Main extends AbstractScript implements PaintInfo {
     private final Tree tree = new Tree();
     Settings settings = Global.getInstance().getSettings();
 
+    // Define the button dimensions and position
+    private final Rectangle muleButtonRect = new Rectangle(10, 350, 100, 30);
 
     // Instantiate the paint object. This can be customized to your liking.
     private final CustomPaint CUSTOM_PAINT = new CustomPaint(this,
@@ -44,33 +49,32 @@ public class Main extends AbstractScript implements PaintInfo {
     @Override
     public void onStart(String... args) {
         instantiateTree();
+        addMouseListener();
     }
 
     // Our onStart for when no arguments have been passed to the script
     @Override
     public void onStart() {
         SwingUtilities.invokeLater(this::showGUI);
-        //TODO GUI should instantiate tree when start is clicked // Global.settings class?
-        //instantiateTree();
+        addMouseListener();
     }
 
     @Override
     public void onExit() {
         Timing.tickTimeout = 0;
         Timing.sleepLength = 0;
-            if (server != null) {
-                server.stop();
+        if (server != null) {
+            server.stop();
+        }
+        if (client != null) {
+            try {
+                client.stopConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            if (client != null) {
-                try {
-                    client.stopConnection();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            
         }
     }
-    
+
     @Override
     public void onStop() {
         MuleServer.getInstance().stop();
@@ -86,9 +90,7 @@ public class Main extends AbstractScript implements PaintInfo {
         tree.addBranches(
                 new TimeoutLeaf(),
                 // Place your own branches and leaves below this
-
                 new CombatBranch().addLeafs(new CombatLeaf()),
-
                 // Place your own branches and leaves above this
                 new FallbackLeaf()
         );
@@ -112,9 +114,8 @@ public class Main extends AbstractScript implements PaintInfo {
                 "Sleep Delay: " + Timing.sleepLength + "ms"
         };
     }
+
     // Show the GUI to get user input
-
-
     private void showGUI() {
         JFrame frame = new JFrame();
         frame.setTitle("Automated Gold Farm");
@@ -125,30 +126,6 @@ public class Main extends AbstractScript implements PaintInfo {
 
         JPanel settingPanel = new JPanel();
         settingPanel.setLayout(new GridLayout(0, 2));
-
-        /*JLabel foodNameLabel = new JLabel("Food name:");
-        settingPanel.add(foodNameLabel);
-
-        JTextField foodNameTextField = new JTextField();
-        settingPanel.add(foodNameTextField);
-
-        JCheckBox lootCheckBox = new JCheckBox("Loot bones");
-        settingPanel.add(lootCheckBox);
-
-        JCheckBox prayerCheckBox = new JCheckBox("Use prayer");
-        settingPanel.add(prayerCheckBox);
-
-        JLabel label = new JLabel("Enemy name:");
-        settingPanel.add(label);
-
-        JComboBox<String> enemyComboBox = new JComboBox<>(new String[]{"Chicken", "Cow", "Goblin"});
-        settingPanel.add(enemyComboBox);
-
-        label = new JLabel("Some value:");
-        settingPanel.add(label);
-
-        JComboBox<Integer> anotherComboBox = new JComboBox<>(new Integer[]{0, 6, 18});
-        settingPanel.add(anotherComboBox);*/
 
         JCheckBox muleCheckBox = new JCheckBox("Is Mule");
         muleCheckBox.addActionListener(e -> isMule = muleCheckBox.isSelected());
@@ -162,11 +139,6 @@ public class Main extends AbstractScript implements PaintInfo {
         JButton button = new JButton("Start script");
         button.addActionListener(e -> {
             Settings settings = Global.getInstance().getSettings();
-            //settings.setFoodName(foodNameTextField.getText());
-            //settings.setLootBones(lootCheckBox.isSelected());
-            //settings.setUsePrayer(prayerCheckBox.isSelected());
-            //settings.setEnemyName((String) enemyComboBox.getSelectedItem());
-            //settings.setSomeValue((int) anotherComboBox.getSelectedItem());
             settings.setRunning(true);
             settings.setMule(isMule);
             frame.dispose();
@@ -200,12 +172,29 @@ public class Main extends AbstractScript implements PaintInfo {
         frame.setVisible(true);
     }
 
-
+    // Add the mouse listener for detecting button clicks
+    private void addMouseListener() {
+        Client.getInstance().getCanvas().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (muleButtonRect.contains(e.getPoint())) {
+                    settings.setShouldMule(!settings.ShouldMule());
+                    Logger.log("Mule button pressed, shouldMule set to: " + settings.ShouldMule());
+                }
+            }
+        });
+    }
 
     // onPaint (you probably don't need to touch this)
     @Override
     public void onPaint(Graphics2D graphics2D) {
         graphics2D.setRenderingHints(aa);
         CUSTOM_PAINT.paint(graphics2D);
+
+        // Draw the mule button
+        graphics2D.setColor(settings.ShouldMule() ? Color.GREEN : Color.RED);
+        graphics2D.fill(muleButtonRect);
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawString("Mule: " + (settings.ShouldMule() ? "On" : "Off"), 15, 370);
     }
 }
