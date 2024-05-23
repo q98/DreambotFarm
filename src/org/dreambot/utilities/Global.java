@@ -1,11 +1,13 @@
-package org.dreambot;
+package org.dreambot.utilities;
 
 public class Global {
     private static Global instance;
     private Settings settings;
+    private Variables variables;
 
     private Global() {
         settings = new Settings();
+        variables = new Variables();
     }
 
     public static synchronized Global getInstance() {
@@ -17,5 +19,8 @@ public class Global {
 
     public Settings getSettings() {
         return settings;
+    }
+    public Variables getVariables() {
+        return variables;
     }
 }

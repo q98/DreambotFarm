@@ -1,6 +1,7 @@
 package org.dreambot;
 
 import org.dreambot.api.Client;
+import org.dreambot.utilities.*;
 import org.dreambot.utilities.muling.MuleClient;
 import org.dreambot.utilities.muling.MuleServer;
 import org.dreambot.api.script.AbstractScript;
@@ -14,8 +15,6 @@ import org.dreambot.behaviour.timeout.TimeoutLeaf;
 import org.dreambot.framework.Tree;
 import org.dreambot.paint.CustomPaint;
 import org.dreambot.paint.PaintInfo;
-import org.dreambot.utilities.API;
-import org.dreambot.utilities.Timing;
 
 import javax.swing.*;
 import java.awt.*;

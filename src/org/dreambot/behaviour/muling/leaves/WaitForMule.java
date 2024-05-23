@@ -1,7 +1,7 @@
 package org.dreambot.behaviour.muling.leaves;
 
-import org.dreambot.Global;
-import org.dreambot.Settings;
+import org.dreambot.utilities.Global;
+import org.dreambot.utilities.Settings;
 import org.dreambot.framework.Leaf;
 import org.dreambot.utilities.Timing;
 

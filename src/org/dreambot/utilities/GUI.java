@@ -1,4 +1,4 @@
-package org.dreambot;
+package org.dreambot.utilities;
 
 import org.dreambot.api.utilities.Logger;
 import org.dreambot.utilities.muling.MuleClient;

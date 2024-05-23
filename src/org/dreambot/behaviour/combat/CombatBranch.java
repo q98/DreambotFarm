@@ -1,10 +1,8 @@
 package org.dreambot.behaviour.combat;
 
-import org.dreambot.Global;
-import org.dreambot.Settings;
-import org.dreambot.api.methods.interactive.Players;
+import org.dreambot.utilities.Global;
+import org.dreambot.utilities.Settings;
 import org.dreambot.framework.Root;
-import org.dreambot.utilities.Timing;
 
 public class CombatBranch extends Root {
     Settings settings = Global.getInstance().getSettings();
