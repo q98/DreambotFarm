@@ -12,6 +12,6 @@ public class CombatBranch extends Root {
 
     @Override
     public boolean isValid() {
-        return (settings.isRunning());
+        return (settings.isRunning() && !settings.ShouldMule());
     }
 }

@@ -63,15 +63,11 @@ public class Main extends AbstractScript implements PaintInfo {
     public void onExit() {
         Timing.tickTimeout = 0;
         Timing.sleepLength = 0;
-        if (server != null) {
-            server.stop();
-        }
-        if (client != null) {
-            try {
-                client.stopConnection();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        MuleServer.getInstance().stop();
+        try {
+            MuleClient.getInstance().stopConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -196,5 +192,10 @@ public class Main extends AbstractScript implements PaintInfo {
         graphics2D.fill(muleButtonRect);
         graphics2D.setColor(Color.BLACK);
         graphics2D.drawString("Mule: " + (settings.ShouldMule() ? "On" : "Off"), 15, 370);
+    }
+    @Override
+    public void handleMessage(String message) {
+        Logger.log("Handled message: " + message);
+        // Add custom handling logic here
     }
 }
